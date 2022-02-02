@@ -29,7 +29,5 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('build.gradle') }}
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Generate Javadocs
-        run: ./gradlew javadoc
       - name: Stop Gradle daemon
         run: ./gradlew --stop
