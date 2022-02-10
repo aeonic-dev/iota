@@ -9,6 +9,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.SerializationTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.*;
@@ -34,12 +35,13 @@ public class IotaConfigHelper {
                     ResourceLocation.CODEC.listOf().fieldOf("ingredientTags").forGetter(TagList::tagLocations)
                 ).apply(instance, TagList::new));
 
-        public TagList(Tag.Named... tags) {
-            this(Arrays.asList(tags).stream().map(tag -> tag.getName()).collect(Collectors.toList()));
+        @SafeVarargs
+        public TagList(Tag.Named<Item>... tags) {
+            this(Arrays.stream(tags).map(Tag.Named::getName).collect(Collectors.toList()));
         }
 
-        public List<Tag> getTags() {
-            List<Tag> tags = new ArrayList();
+        public List<Tag<Item>> getTags() {
+            List<Tag<Item>> tags = new ArrayList<>();
             for (var loc: tagLocations) {
                 tags.add(SerializationTags.getInstance().getTagOrThrow(Registry.ITEM_REGISTRY, loc, (tagName) -> new JsonSyntaxException("Unknown item tag '" + tagName + "'")));
             }
@@ -57,12 +59,12 @@ public class IotaConfigHelper {
         }
 
         private TagList tagList;
-        private List<Tag> tagCache = new ArrayList<>();
+        private List<Tag<Item>> tagCache = new ArrayList<>();
         private int tagCacheNum = -1;
         private TagListCache(TagList list) { tagList = list; }
 
-        public List<Tag> get(int cacheNum) { return get(cacheNum, false); }
-        public List<Tag> get(int cacheNum, boolean forceClear) {
+        public List<Tag<Item>> get(int cacheNum) { return get(cacheNum, false); }
+        public List<Tag<Item>> get(int cacheNum, boolean forceClear) {
             if (tagCacheNum != -1 && tagCacheNum == cacheNum)
                 return tagCache;
             return tagCache = tagList.getTags();
