@@ -52,7 +52,7 @@ minecraft {
 	// parchment  YYYY.MM.DD-MCVer  Javadocs and parameters layered on top of Mojmaps from the ParchmentMC team.
 	mappings channel: mappings_channel, version: mappings_version
 
-	// accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
+	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
 	// Run configurations
 	runs {
@@ -132,12 +132,10 @@ repositories {
     url = "https://modmaven.dev"
   }
 
-	repositories {
-		maven { // Registrate
-			url "https://maven.tterrag.com/"
-		}
-		mavenLocal()
-	}
+  maven { // Registrate
+    url "https://maven.tterrag.com/"
+  }
+  mavenLocal()
 
   maven { url 'https://maven.blamejared.com' }
 }
@@ -151,7 +149,6 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
-	// main shadowjar
     shade fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
 
 	// data
@@ -215,7 +212,7 @@ jar {
 shadowJar {
 	archiveClassifier = ''
 	configurations = [project.configurations.shade]
-	relocate 'com.tterrag.registrate', "design.aeonic.${mod_id}.repack.registrate"
+	relocate 'com.tterrag.registrate', "${project.group}.repack.registrate"
 	finalizedBy 'reobfShadowJar'
 }
 
@@ -223,11 +220,8 @@ reobf {
 	shadowJar {}
 }
 
-// Example configuration to allow publishing using the maven-publish plugin
-// This is the preferred method to reobfuscate your jar file
+tasks.build.dependsOn reobfShadowJar
 jar.finalizedBy('reobfJar')
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
-// publish.dependsOn('reobfJar')
 
 publishing {
 	publications {
