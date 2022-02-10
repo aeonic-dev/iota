@@ -1,11 +1,12 @@
 package design.aeonic.iota;
 
 import com.tterrag.registrate.Registrate;
-import net.minecraft.world.entity.animal.horse.Horse;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.LeadItem;
+import design.aeonic.iota.config.ConfigCommon;
+import design.aeonic.iota.config.ConfigServer;
+import design.aeonic.iota.base.misc.ConfigHelper;
+import design.aeonic.iota.registry.IotaRegistrate;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 
 @Mod(Iota.MOD_ID)
 public class Iota {
@@ -13,7 +14,9 @@ public class Iota {
     public static final String MOD_ID = "iota";
     public static final String MOD_NAME = "Iota";
     
-    public static final Registrate REGISTRATE = Registrate.create(MOD_ID).creativeModeTab(() -> CreativeModeTab.TAB_MISC);
+    public static final IotaRegistrate REGISTRATE = IotaRegistrate.create();
+    public static final ConfigServer serverConfig = ConfigHelper.register(ModConfig.Type.SERVER, ConfigServer::create);
+    public static final ConfigCommon commonConfig = ConfigHelper.register(ModConfig.Type.COMMON, ConfigCommon::create);
 
     public Iota() {}
 
