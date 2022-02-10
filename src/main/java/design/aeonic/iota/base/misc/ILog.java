@@ -1,4 +1,4 @@
-package design.aeonic.iota.common.util;
+package design.aeonic.iota.base.misc;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

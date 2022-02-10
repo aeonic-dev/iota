@@ -1,4 +1,4 @@
-package design.aeonic.iota.common.util;
+package design.aeonic.iota.base.misc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
