@@ -1,5 +1,6 @@
 package design.aeonic.iota.mixin;
 
+import design.aeonic.iota.Iota;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.animal.AbstractGolem;
@@ -24,6 +25,7 @@ abstract class MixinSnowGolem extends AbstractGolem {
 
     @Inject(method = "registerGoals", at = @At("HEAD"))
     protected void registerTemptGoal(CallbackInfo ci) {
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.25d, Ingredient.of(Items.SNOWBALL), false));
+        if (Iota.serverConfig.snowGolemsFollowSnowballs().get())
+            this.goalSelector.addGoal(2, new TemptGoal(this, 1.25d, Ingredient.of(Items.SNOWBALL), false));
     }
 }

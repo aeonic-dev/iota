@@ -1,5 +1,6 @@
 package design.aeonic.iota.mixin;
 
+import design.aeonic.iota.Iota;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Turtle;
@@ -17,6 +18,6 @@ abstract class MixinTurtle extends Animal {
     }
 
     public boolean canBeLeashed(Player p_35272_) {
-        return true;
+        return Iota.serverConfig.turtlesCanBeLeashed().get();
     }
 }

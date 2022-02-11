@@ -1,5 +1,6 @@
 package design.aeonic.iota.mixin;
 
+import design.aeonic.iota.Iota;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
@@ -26,6 +27,7 @@ abstract class MixinParrot extends ShoulderRidingEntity {
 
     @Inject(method = "registerGoals", at = @At("HEAD"))
     protected void registerTemptGoal(CallbackInfo ci) {
-        this.goalSelector.addGoal(1, new TemptGoal(this, 2.25d, Ingredient.of(Tags.Items.SEEDS), false));
+        if (Iota.serverConfig.parrotsFollowSeeds().get())
+            this.goalSelector.addGoal(1, new TemptGoal(this, 2.25d, Ingredient.of(Tags.Items.SEEDS), false));
     }
 }

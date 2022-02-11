@@ -1,5 +1,6 @@
 package design.aeonic.iota.mixin;
 
+import design.aeonic.iota.Iota;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.npc.AbstractVillager;
@@ -17,11 +18,13 @@ abstract class MixinVillager extends AbstractVillager {
     }
 
     public boolean canBeLeashed(Player p_35272_) {
-        return true;
+        return Iota.serverConfig.villagersCanBeLeashed().get();
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(3, new TemptGoal(this, .5D, Ingredient.of(Items.EMERALD), false));
-        super.registerGoals();
+        if (Iota.serverConfig.villagersFollowEmeralds().get()) {
+            this.goalSelector.addGoal(3, new TemptGoal(this, .5D, Ingredient.of(Items.EMERALD), false));
+            super.registerGoals();
+        }
     }
 }
