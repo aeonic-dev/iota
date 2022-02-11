@@ -15,11 +15,16 @@ More information on these features and how to use them will be available in the 
 
 ### Tweaks
 
-* Villagers, wandering traders and turtles can now be leashed
-* Villagers and wandering traders now follow players holding emeralds
-* Parrots now follow players holding any `forge:seeds` item, significantly faster than their normal flight speed
-* Snow golems now follow players holding snowballs, slightly faster than their normal walking speed
-* Cows, mooshrooms, pigs, chickens, rabbits and sheep now follow players holding their respective food items 30% faster—no more waiting around for your farm animals to catch up!
+* Mobs
+  * Villagers, wandering traders and turtles can now be leashed
+  * Villagers and wandering traders now follow players holding emeralds
+  * Parrots now follow players holding any `forge:seeds` item, significantly faster than their normal flight speed
+  * Snow golems now follow players holding snowballs, slightly faster than their normal walking speed
+  * Cows, mooshrooms, pigs, chickens, rabbits and sheep now follow players holding their respective food items 30% faster—no more waiting around for your farm animals to catch up!
+
+
+* Miscellaenous
+  * Nether portals now allow crying obsidian within their frame, as well as anything else in the handy `iota:blocks/nether_portal_frame` tag! Add blocks to your heart's desire.
 
 ### Integration
 

@@ -11,7 +11,9 @@
     "MixinSnowGolem",
 
     "MixinTemptGoal",
-    "MixinTemptGoalAccess"
+    "MixinTemptGoalAccess",
+
+    "MixinIForgeBlockState"
   ],
   "client": [],
   "minVersion": "0.8.4"
