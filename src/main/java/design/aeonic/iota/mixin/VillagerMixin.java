@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Villager.class)
-abstract class MixinVillager extends AbstractVillager {
-    public MixinVillager(EntityType<? extends AbstractVillager> p_35267_, Level p_35268_) {
+abstract class VillagerMixin extends AbstractVillager {
+    public VillagerMixin(EntityType<? extends AbstractVillager> p_35267_, Level p_35268_) {
         super(p_35267_, p_35268_);
     }
 

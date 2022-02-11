@@ -8,7 +8,7 @@ import net.minecraftforge.common.extensions.IForgeBlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(IForgeBlockState.class)
-public interface MixinIForgeBlockState extends IForgeBlockState {
+public interface IForgeBlockStateMixin extends IForgeBlockState {
     default boolean isPortalFrame(BlockGetter world, BlockPos pos)
     {
         var state = (BlockState) this;

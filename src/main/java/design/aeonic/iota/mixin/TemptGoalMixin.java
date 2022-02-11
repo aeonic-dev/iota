@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(TemptGoal.class)
-abstract class MixinTemptGoal {
+abstract class TemptGoalMixin {
 
     @Redirect(method = {"tick"},
             at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/ai/goal/TemptGoal;speedModifier:D", opcode = Opcodes.GETFIELD))
     private double multiplyTemptGoalSpeed(TemptGoal instance) {
-        var inter = ((MixinTemptGoalAccess) instance);
+        var inter = ((TemptGoalAccess) instance);
         var oldValue = inter.getSpeedModifier();
         var mob = inter.getMob();
 
