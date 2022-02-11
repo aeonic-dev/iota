@@ -2,6 +2,7 @@ package design.aeonic.iota.content.kiln;
 
 import design.aeonic.iota.base.block.entity.ItemHandlerBlockEntity;
 import design.aeonic.iota.base.block.menu.SimpleMenu;
+import design.aeonic.iota.event.reload.KilnRecipeLoader;
 import design.aeonic.iota.registry.IotaRecipeTypes;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;

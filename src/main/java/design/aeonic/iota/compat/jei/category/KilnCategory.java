@@ -5,7 +5,7 @@ import design.aeonic.iota.base.block.entity.MenuBlockEntity;
 import design.aeonic.iota.base.jei.AbstractCookingCategory;
 import design.aeonic.iota.content.kiln.KilnMenu;
 import design.aeonic.iota.content.kiln.KilnRecipe;
-import design.aeonic.iota.content.kiln.KilnRecipeLoader;
+import design.aeonic.iota.event.reload.KilnRecipeLoader;
 import design.aeonic.iota.content.kiln.KilnScreen;
 import design.aeonic.iota.registry.IotaBlocks;
 import design.aeonic.iota.registry.IotaRecipeTypes;
