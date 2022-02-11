@@ -4,14 +4,18 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.iota.refmap.json",
   "mixins": [
-    "MixinVillager",
-    "MixinWanderingTrader",
-    "MixinTurtle",
-    "MixinParrot",
-    "MixinSnowGolem",
+    "VillagerMixin",
+    "WanderingTraderMixin",
+    "TurtleMixin",
+    "ParrotMixin",
+    "SnowGolemMixin",
 
-    "MixinTemptGoal",
-    "MixinTemptGoalAccess"
+    "TemptGoalMixin",
+    "TemptGoalAccess",
+
+    "IForgeBlockStateMixin",
+    "BucketItemAccess",
+    "MobBucketItemAccess"
   ],
   "client": [],
   "minVersion": "0.8.4"

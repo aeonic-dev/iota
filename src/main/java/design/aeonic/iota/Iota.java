@@ -1,9 +1,8 @@
 package design.aeonic.iota;
 
-import com.tterrag.registrate.Registrate;
+import design.aeonic.iota.base.misc.ConfigHelper;
 import design.aeonic.iota.config.ConfigCommon;
 import design.aeonic.iota.config.ConfigServer;
-import design.aeonic.iota.base.misc.ConfigHelper;
 import design.aeonic.iota.registry.IotaRegistrate;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
