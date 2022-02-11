@@ -1,56 +1,17 @@
 package design.aeonic.iota.config;
 
+import design.aeonic.iota.base.misc.ConfigHelper;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.Tags;
 
 public record ConfigCommon(
-        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanEmptyCauldron,
-        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanEmptyAnimalCauldron,
-        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillWaterCauldron,
-        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillLavaCauldron,
-        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillPowderSnowCauldron,
-        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillAnimalCauldron,
-        ForgeConfigSpec.ConfigValue<Boolean> enableKiln
+        ForgeConfigSpec.ConfigValue<Boolean> enableKiln,
+        ConfigHelper.ConfigObject<IotaConfigHelper.ItemList> mobBucketItems
 ){
 
     public static ConfigCommon create(ForgeConfigSpec.Builder builder) {
-
-        builder.comment("Iota tweaks").push("content");
-            builder.comment("Iota tweaks").push("content");
-                var dispenserCanEmptyCauldron = IotaConfigHelper.configVar(builder,
-                        "dispenserCanEmptyCauldron",
-                        "Whether dispensers can fill empty buckets from full cauldrons of water, snow or lava",
-                        (b, s) -> b.define(s, true)
-                );
-                var dispenserCanEmptyAnimalCauldron = IotaConfigHelper.configVar(builder,
-                        "dispenserCanEmptyAnimalCauldron",
-                        "Whether dispensers can fill empty buckets with bucketable animals from full water cauldrons",
-                        (b, s) -> b.define(s, true)
-                );
-
-                var dispenserCanFillWaterCauldron = IotaConfigHelper.configVar(builder,
-                        "dispenserCanFillWaterCauldron",
-                        "Whether dispensers can fill cauldrons from water buckets",
-                        (b, s) -> b.define(s, true)
-                );
-                var dispenserCanFillLavaCauldron = IotaConfigHelper.configVar(builder,
-                        "dispenserCanFillLavaCauldron",
-                        "Whether dispensers can fill cauldrons from lava buckets",
-                        (b, s) -> b.define(s, true)
-                );
-                var dispenserCanFillPowderSnowCauldron = IotaConfigHelper.configVar(builder,
-                        "dispenserCanFillPowderSnowCauldron",
-                        "Whether dispensers can fill cauldrons from powder snow buckets",
-                        (b, s) -> b.define(s, true)
-                );
-                var dispenserCanFillAnimalCauldron = IotaConfigHelper.configVar(builder,
-                        "dispenserCanFillAnimalCauldron",
-                        "Whether dispensers can fill cauldrons from full water animal buckets",
-                        (b, s) -> b.define(s, true)
-                );
-            builder.pop();
-        builder.pop();
 
         builder.comment("Iota content additions").push("content");
             var enableKiln = IotaConfigHelper.configVar(builder,
@@ -60,14 +21,22 @@ public record ConfigCommon(
             );
         builder.pop();
 
+        builder.comment("Iota tweaks").push("content");
+        var mobBucketItems = IotaConfigHelper.configObj(builder,
+                "mobBucketItems",
+                "A list of mob buckets dispensers can fill cauldrons with if the server config option is enabled",
+                (b, s) -> ConfigHelper.defineObject(b, s, IotaConfigHelper.ItemList.CODEC, new IotaConfigHelper.ItemList(
+                        Items.PUFFERFISH_BUCKET,
+                        Items.SALMON_BUCKET,
+                        Items.COD_BUCKET,
+                        Items.TROPICAL_FISH_BUCKET,
+                        Items.AXOLOTL_BUCKET
+                )));
+        builder.pop();
+
         return new ConfigCommon(
-                dispenserCanEmptyCauldron,
-                dispenserCanEmptyAnimalCauldron,
-                dispenserCanFillWaterCauldron,
-                dispenserCanFillLavaCauldron,
-                dispenserCanFillPowderSnowCauldron,
-                dispenserCanFillAnimalCauldron,
-                enableKiln
+                enableKiln,
+                mobBucketItems
         );
     }
 

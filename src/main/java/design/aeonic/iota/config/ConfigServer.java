@@ -9,6 +9,13 @@ import net.minecraftforge.common.Tags;
 
 public record ConfigServer(
         // Vanilla tweaks
+        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanEmptyCauldron,
+        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanEmptyAnimalCauldron,
+        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillWaterCauldron,
+        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillLavaCauldron,
+        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillPowderSnowCauldron,
+        ForgeConfigSpec.ConfigValue<Boolean> dispenserCanFillAnimalCauldron,
+
         ConfigValue<Boolean> parrotsFollowSeeds,
         ConfigValue<Boolean> snowGolemsFollowSnowballs,
         ConfigValue<Boolean> villagersFollowEmeralds,
@@ -38,6 +45,40 @@ public record ConfigServer(
     public static ConfigServer create(ForgeConfigSpec.Builder builder) {
 
         builder.comment("Iota Vanilla tweaks").push("tweaks");
+            builder.comment("Enable or disable Iota's dispenser tweaks").push("dispensers");
+                var dispenserCanEmptyCauldron = IotaConfigHelper.configVar(builder,
+                        "dispenserCanEmptyCauldron",
+                        "Whether dispensers can fill empty buckets from full cauldrons of water, snow or lava",
+                        (b, s) -> b.define(s, true)
+                );
+                var dispenserCanEmptyAnimalCauldron = IotaConfigHelper.configVar(builder,
+                        "dispenserCanEmptyAnimalCauldron",
+                        "Whether dispensers can fill empty buckets with bucketable animals from full water cauldrons",
+                        (b, s) -> b.define(s, true)
+                );
+
+                var dispenserCanFillWaterCauldron = IotaConfigHelper.configVar(builder,
+                        "dispenserCanFillWaterCauldron",
+                        "Whether dispensers can fill cauldrons from water buckets",
+                        (b, s) -> b.define(s, true)
+                );
+                var dispenserCanFillLavaCauldron = IotaConfigHelper.configVar(builder,
+                        "dispenserCanFillLavaCauldron",
+                        "Whether dispensers can fill cauldrons from lava buckets",
+                        (b, s) -> b.define(s, true)
+                );
+                var dispenserCanFillPowderSnowCauldron = IotaConfigHelper.configVar(builder,
+                        "dispenserCanFillPowderSnowCauldron",
+                        "Whether dispensers can fill cauldrons from powder snow buckets",
+                        (b, s) -> b.define(s, true)
+                );
+                var dispenserCanFillAnimalCauldron = IotaConfigHelper.configVar(builder,
+                        "dispenserCanFillAnimalCauldron",
+                        "Whether dispensers can fill cauldrons from full water animal buckets",
+                        (b, s) -> b.define(s, true)
+                );
+                builder.pop();
+
             builder.comment("Enable or disable Iota's mob tempting/following tweaks.").push("followItems");
                 var parrotsFollowSeeds = IotaConfigHelper.configVar(builder,
                         "parrotsFollowSeeds",
@@ -149,6 +190,13 @@ public record ConfigServer(
         builder.pop();
 
         return new ConfigServer(
+            dispenserCanEmptyCauldron,
+            dispenserCanEmptyAnimalCauldron,
+            dispenserCanFillWaterCauldron,
+            dispenserCanFillLavaCauldron,
+            dispenserCanFillPowderSnowCauldron,
+            dispenserCanFillAnimalCauldron,
+
             parrotsFollowSeeds,
             snowGolemsFollowSnowballs,
             villagersFollowEmeralds,

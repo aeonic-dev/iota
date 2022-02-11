@@ -1,8 +1,9 @@
-package design.aeonic.iota.content.kiln;
+package design.aeonic.iota.event.reload;
 
 import com.google.common.collect.Streams;
 import design.aeonic.iota.Iota;
 import design.aeonic.iota.base.misc.ILog;
+import design.aeonic.iota.content.kiln.KilnRecipe;
 import design.aeonic.iota.registry.IotaRecipeTypes;
 import design.aeonic.iota.config.IotaConfigHelper;
 import net.minecraft.Util;
@@ -23,7 +24,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = Iota.MOD_ID)
 public class KilnRecipeLoader implements ResourceManagerReloadListener, ILog {
 
     public static KilnRecipeLoader INSTANCE = new KilnRecipeLoader();
@@ -72,10 +72,5 @@ public class KilnRecipeLoader implements ResourceManagerReloadListener, ILog {
     @Override
     public void onResourceManagerReload(ResourceManager pResourceManager) {
         KilnRecipeLoader.current ++;
-    }
-
-    @SubscribeEvent
-    public static void addReloadListener(AddReloadListenerEvent event) {
-        event.addListener(INSTANCE);
     }
 }
