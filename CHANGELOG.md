@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+* Moved mob bucket settings for dispenser behavior to common config
+* Removed extra tags and did some cleanup
+
 ## 0.2.1
 * Slight folder structure changes
 * Added nether portal frame tag & implementation

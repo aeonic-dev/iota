@@ -21,8 +21,8 @@ More information on these features and how to use them will be available in the 
   * Full buckets will be emptied into an empty cauldron; if the cauldron is already full, the bucket will be spit out as normal
   * _Water prisons! Wow!_
     * Buckets containing animals act the same as full buckets, but also spawn their contained animal
-    * By default this works with vanilla buckets only, but others can be added via the `iota:items/bucket_has_mob` tag
-    * Empty buckets right clicked on a full water cauldron will pick up a bucketable entity within one block of the cauldron's center
+    * By default this works with vanilla buckets only, but others can be added in the common config
+    * Empty buckets right clicked on a full water cauldron with a bucketable entity in it will capture it as the player would
   * Can be disabled or tweaked in the common config
   * Badly hardcoded in true vanilla fashion!
 
