@@ -28,11 +28,21 @@ public class IotaBlocks {
 					.properties(p -> BlockBehaviour.Properties.of(Material.STONE).noOcclusion().isViewBlocking((x, y, z) -> false).strength(3.5F).lightLevel(s -> s.getValue(BlockStateProperties.LIT) ? 13 : 0))
 					.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 					.blockstate((c, p) -> {
-						ModelFile.ExistingModelFile model = p.models().getExistingFile(new ResourceLocation(Iota.MOD_ID, "block/kiln"));
-						ModelFile.ExistingModelFile model_on = p.models().getExistingFile(new ResourceLocation(Iota.MOD_ID, "block/kiln_on"));
+						var model = p.models().orientableWithBottom(c.getName(),
+								new ResourceLocation(Iota.MOD_ID, "block/kiln_side"),
+								new ResourceLocation(Iota.MOD_ID, "block/kiln_front"),
+								new ResourceLocation("block/copper_block"),
+								new ResourceLocation(Iota.MOD_ID, "block/kiln_top"));
+
+						var model_on = p.models().orientableWithBottom(c.getName() + "_on",
+								new ResourceLocation(Iota.MOD_ID, "block/kiln_side"),
+								new ResourceLocation(Iota.MOD_ID, "block/kiln_front_on"),
+								new ResourceLocation("block/copper_block"),
+								new ResourceLocation(Iota.MOD_ID, "block/kiln_top_on"));
+
 						p.getVariantBuilder(c.get()).forAllStates(s ->
 												ConfiguredModel.builder().modelFile(s.getValue(BlockStateProperties.LIT) ? model_on : model)
-														.rotationY((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
+														.rotationY((int) s.getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite().toYRot()).build());
 					})
 					.item()
 						.tab(() -> CreativeModeTab.TAB_DECORATIONS)
@@ -42,10 +52,10 @@ public class IotaBlocks {
 										.addRecipe(ShapedRecipeBuilder.shaped(ctx.get())
 												.define('c', Items.COPPER_INGOT)
 												.define('f', Items.FURNACE)
-												.define('s', Items.SMOOTH_STONE)
-												.pattern("sss")
-												.pattern("cfc")
+												.define('b', Items.BRICKS)
 												.pattern("ccc")
+												.pattern("bbb")
+												.pattern("cfc")
 												.unlockedBy("has_copper", RecipeProvider.has(Items.COPPER_INGOT))::save
 										).generateAdvancement().build(prv, ctx.getId()))
 					.build(),

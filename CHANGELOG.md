@@ -7,6 +7,8 @@
 * Added spawnpoint removal alert
   * Broke spawnpoint removal alert
   * Fixed spawnpoint removal alert
+* Fixed powder snow cauldron dispenser behavior
+* Added new kiln models
 
 ### 0.2.2
 * Moved mob bucket settings for dispenser behavior to common config
