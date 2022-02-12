@@ -7,6 +7,7 @@ import com.tterrag.registrate.builders.MenuBuilder;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.MenuEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import design.aeonic.iota.Iota;
 import design.aeonic.iota.base.block.MenuBlock;
@@ -17,6 +18,7 @@ import design.aeonic.iota.base.block.menu.SimpleMenu;
 import design.aeonic.iota.base.block.menu.SimpleScreen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -135,6 +137,10 @@ public class IotaRegistrate extends AbstractRegistrate<IotaRegistrate> {
         }
 
         public @Nonnull MenuType<M> menu() { return menu.orElseThrow(() -> new AssertionError(String.format("MenuType %s has not yet been registered!", this.menu.getId().getPath()))); }
+    }
+
+    public void queueItemInfo(RegistryEntry<? extends ItemLike> item, String description) {
+        addRawLang(String.format("info.item.%s.%s", item.getId().getNamespace(), item.getId().getPath()), description);
     }
 
 }

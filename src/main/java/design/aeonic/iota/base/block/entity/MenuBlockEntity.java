@@ -2,6 +2,7 @@ package design.aeonic.iota.base.block.entity;
 
 import design.aeonic.iota.Iota;
 import design.aeonic.iota.base.block.menu.SimpleMenu;
+import design.aeonic.iota.registry.IotaRegistrate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -25,7 +26,7 @@ public abstract class MenuBlockEntity<E extends MenuBlockEntity<E, M>, M extends
     private final SimpleMenu.ServerMenuFactory<E, M> menuFactory;
 
     /**
-     * A constructor for use within {@link design.aeonic.iota.registry.IotaRegistrate#bazinga}. All arguments are passed from the factory; do not manually set them.
+     * A constructor for use within {@link IotaRegistrate#bazinga}. All arguments are passed from the factory; do not manually set them.
      */
     public MenuBlockEntity(BlockEntityType<E> type, BlockPos pos, BlockState state, Supplier<MenuType<M>> menuType, SimpleMenu.ServerMenuFactory<E, M> menuFactory) {
         super(type, pos, state);

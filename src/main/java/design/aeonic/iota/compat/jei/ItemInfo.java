@@ -22,13 +22,13 @@ public class ItemInfo {
         var languageData = Language.getInstance().getLanguageData();
         List<Pair<ResourceLocation, String>> infoKeys = new ArrayList<>();
 
-        for (var item: ForgeRegistries.ITEMS.getKeys()) {
+        ForgeRegistries.ITEMS.getKeys().stream().forEach(item -> {
             var key = String.format("info.item.%s.%s", item.getNamespace(), item.getPath());
             if (languageData.containsKey(key)) {
                 log.info("Found JEI item info key " + key);
                 infoKeys.add(new ImmutablePair<>(item, key));
             }
-        }
+        });
 
         log.info("Queuing JEI info for {} items...", infoKeys.size());
         for (var key: infoKeys) {

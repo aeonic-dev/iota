@@ -1,8 +1,11 @@
 package design.aeonic.iota.event;
 
 import design.aeonic.iota.Iota;
+import design.aeonic.iota.config.condition.KilnConfigCondition;
 import design.aeonic.iota.event.setup.DispenserBehaviors;
-import design.aeonic.iota.event.setup.IotaAdvancements;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -18,4 +21,9 @@ public class ModEvents {
         });
     }
 
+    // Recipe conditions
+    @SubscribeEvent
+    public static void registerConditionSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
+        CraftingHelper.register(new KilnConfigCondition().serializer());
+    }
 }

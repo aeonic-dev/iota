@@ -2,6 +2,7 @@ package design.aeonic.iota.base.block;
 
 import design.aeonic.iota.base.block.entity.MenuBlockEntity;
 import design.aeonic.iota.base.block.menu.SimpleMenu;
+import design.aeonic.iota.registry.IotaRegistrate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -20,7 +21,7 @@ import java.util.function.Supplier;
 public abstract class MenuBlock<E extends MenuBlockEntity<E, M>, M extends SimpleMenu<E, M>> extends SimpleEntityBlock<E> {
 
     /**
-     * A constructor for use within {@link design.aeonic.iota.registry.IotaRegistrate#bazinga}. All arguments are passed from the registry; do not manually set them.
+     * A constructor for use within {@link IotaRegistrate#bazinga}. All arguments are passed from the registry; do not manually set them.
      */
     public MenuBlock(Properties blockProps, Supplier<BlockEntityType<E>> blockEntityType, MenuBlockEntity.MenuBlockEntityFactory<E, M> entityFactory, Supplier<MenuType<M>> menuType, SimpleMenu.ServerMenuFactory<E, M> menuFactory) {
         super(blockProps, blockEntityType, (t, p, s) -> entityFactory.create(t, p, s, menuType, menuFactory));

@@ -19,13 +19,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.fml.common.Mod;
 
-/**
- * A class to store the mod's blocks.
- * @author aeonic-dev
- */
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Iota.MOD_ID)
 public class IotaBlocks {
 
 	public static final IotaRegistrate.TheWholeNineYards<KilnBlock, KilnBlockEntity, KilnMenu, KilnScreen> KILN = Iota.REG.bazinga("kiln",
@@ -56,5 +50,7 @@ public class IotaBlocks {
 										).generateAdvancement().build(prv, ctx.getId()))
 					.build(),
 			KilnBlockEntity::new, KilnMenu::new, KilnMenu::new, () -> KilnScreen::new);
+
+	public static void register() {}
 
 }

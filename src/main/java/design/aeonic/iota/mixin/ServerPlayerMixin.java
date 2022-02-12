@@ -1,6 +1,6 @@
 package design.aeonic.iota.mixin;
 
-import design.aeonic.iota.event.setup.IotaAdvancements;
+import design.aeonic.iota.registry.IotaAdvancements;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;

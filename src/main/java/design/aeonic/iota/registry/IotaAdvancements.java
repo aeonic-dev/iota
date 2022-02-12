@@ -1,4 +1,4 @@
-package design.aeonic.iota.event.setup;
+package design.aeonic.iota.registry;
 
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
@@ -16,27 +16,26 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = Iota.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class IotaAdvancements {
 
     public static final ResourceLocation MAIN_GROUP_BACKGROUND = new ResourceLocation(
             Iota.MOD_ID, "textures/gui/advancements/backgrounds/main.png");
 
-//    public static AdvancementEntry IOTA = new AdvancementEntry(() ->
-//        Advancement.Builder.advancement()
-//                .display(IotaBlocks.KILN.block(), getNameKey("iota"), getDescKey("iota", "Have a look around."), MAIN_GROUP_BACKGROUND,
-//                        FrameType.TASK, false, false, false)
-//                .addCriterion("has_crafting_table", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
-//                .build(new ResourceLocation(Iota.MOD_ID, "main/iota")));
+    public static AdvancementEntry IOTA = new AdvancementEntry(() ->
+        Advancement.Builder.advancement()
+                .display(IotaBlocks.KILN.block(), getNameKey("iota"), getDescKey("iota", "Have a look around."), MAIN_GROUP_BACKGROUND,
+                        FrameType.TASK, false, false, false)
+                .addCriterion("has_crafting_table", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CRAFTING_TABLE))
+                .build(new ResourceLocation(Iota.MOD_ID, "main/iota")));
 
     public static AdvancementEntry PIRACY = new AdvancementEntry(() ->
             Advancement.Builder.advancement()
-                    .display(Items.MUSIC_DISC_11, getNameKey("piracy", "Piracy. It's a crime."), getDescKey("piracy", "Steal a disc dropped by another player dying"), null,
+                    .display(Items.MUSIC_DISC_11, getNameKey("piracy", "Piracy. It's a crime."), getDescKey("piracy", "Steal a disc dropped by another player dying"), MAIN_GROUP_BACKGROUND,
                             FrameType.CHALLENGE, true, true, false)
                     .addCriterion("never", new ImpossibleTrigger.TriggerInstance()) // will be triggered manually
                     .build(new ResourceLocation(Iota.MOD_ID, "main/piracy")));
 
-    static {
+    public static void register() {
         Iota.REG.addDataGenerator(ProviderType.ADVANCEMENT, prv -> {
             prv.accept(PIRACY.get());
         });

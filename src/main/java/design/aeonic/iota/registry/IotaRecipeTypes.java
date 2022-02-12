@@ -1,28 +1,19 @@
 package design.aeonic.iota.registry;
 
 import design.aeonic.iota.Iota;
-import design.aeonic.iota.config.condition.KilnConfigCondition;
 import design.aeonic.iota.content.kiln.KilnRecipe;
+import design.aeonic.iota.registry.IotaRegistrate;
 import net.minecraft.core.Registry;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.antlr.v4.runtime.misc.LogManager;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Iota.MOD_ID)
 public class IotaRecipeTypes {
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = IotaRegistrate.deferredRegister(ForgeRegistries.RECIPE_SERIALIZERS, FMLJavaModLoadingContext.get().getModEventBus());
@@ -32,14 +23,10 @@ public class IotaRecipeTypes {
             "kiln",
             () -> new SimpleCookingSerializer<>(KilnRecipe::new, 100));
 
-    // Recipe conditions
-    @SubscribeEvent
-    public static void registerConditionSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
-        CraftingHelper.register(new KilnConfigCondition().serializer());
-    }
-
     public static ResourceLocation getKey(RecipeType<? extends Recipe<?>> type) {
         return Registry.RECIPE_TYPE.getKey(type);
     }
+
+    public static void register() {}
 
 }

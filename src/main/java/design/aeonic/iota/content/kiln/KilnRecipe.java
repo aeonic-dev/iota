@@ -1,6 +1,5 @@
 package design.aeonic.iota.content.kiln;
 
-import design.aeonic.iota.Iota;
 import design.aeonic.iota.registry.IotaBlocks;
 import design.aeonic.iota.registry.IotaRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
