@@ -24,6 +24,7 @@ public class Iota {
         IotaAdvancements.register();
         IotaRecipeTypes.register();
         DefaultItemInfo.register();
+        IotaMiscLang.register();
     }
 
 }

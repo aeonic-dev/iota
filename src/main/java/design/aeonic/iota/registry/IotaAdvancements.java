@@ -3,7 +3,6 @@ package design.aeonic.iota.registry;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import design.aeonic.iota.Iota;
-import design.aeonic.iota.registry.IotaBlocks;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.ImpossibleTrigger;
@@ -11,7 +10,6 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -19,7 +17,7 @@ import java.util.function.Supplier;
 public class IotaAdvancements {
 
     public static final ResourceLocation MAIN_GROUP_BACKGROUND = new ResourceLocation(
-            Iota.MOD_ID, "textures/gui/advancements/backgrounds/main.png");
+            "textures/block/anvil.png");
 
     public static AdvancementEntry IOTA = new AdvancementEntry(() ->
         Advancement.Builder.advancement()
@@ -30,6 +28,7 @@ public class IotaAdvancements {
 
     public static AdvancementEntry PIRACY = new AdvancementEntry(() ->
             Advancement.Builder.advancement()
+                    .parent(IOTA.get())
                     .display(Items.MUSIC_DISC_11, getNameKey("piracy", "Piracy. It's a crime."), getDescKey("piracy", "Steal a disc dropped by another player dying"), MAIN_GROUP_BACKGROUND,
                             FrameType.CHALLENGE, true, true, false)
                     .addCriterion("never", new ImpossibleTrigger.TriggerInstance()) // will be triggered manually
@@ -37,6 +36,7 @@ public class IotaAdvancements {
 
     public static void register() {
         Iota.REG.addDataGenerator(ProviderType.ADVANCEMENT, prv -> {
+            prv.accept(IOTA.get());
             prv.accept(PIRACY.get());
         });
     }

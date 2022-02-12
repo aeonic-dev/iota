@@ -1,4 +1,4 @@
-package design.aeonic.iota.mixin;
+package design.aeonic.iota.mixin.entities;
 
 import design.aeonic.iota.Iota;
 import net.minecraft.world.entity.EntityType;

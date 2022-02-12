@@ -1,6 +1,6 @@
-package design.aeonic.iota.mixin;
+package design.aeonic.iota.mixin.blocks;
 
-import design.aeonic.iota.base.misc.MixinCallbacks;
+import design.aeonic.iota.base.mixin.MixinCallbacks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;

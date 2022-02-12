@@ -4,15 +4,18 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "mixins.iota.refmap.json",
   "mixins": [
-    "VillagerMixin",
-    "WanderingTraderMixin",
-    "TurtleMixin",
-    "ParrotMixin",
-    "SnowGolemMixin",
-    "TemptGoalMixin",
-    "IForgeBlockStateMixin",
-    "ServerPlayerMixin",
-    "InventoryMixin",
+    "entities.VillagerMixin",
+    "entities.WanderingTraderMixin",
+    "entities.TurtleMixin",
+    "entities.ParrotMixin",
+    "entities.SnowGolemMixin",
+    "entities.TemptGoalMixin",
+
+    "blocks.IForgeBlockStateMixin",
+
+    "players.ServerPlayerMixin",
+    "players.InventoryMixin",
+    "players.SpawnBlockMixin",
 
     "accessors.TemptGoalAccess",
     "accessors.BucketItemAccess",
