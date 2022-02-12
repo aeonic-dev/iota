@@ -61,6 +61,7 @@ public class DispenserBehaviors {
         public ItemStack execute(BlockSource source, @Nonnull ItemStack stack) {
             // TODO: find a mod-agnostic way to implement the rest of this
             //  Figure out what mods make changes to cauldron etc
+            //  Also rewrite in a less bad way that doesn't suck
 
             if (!(Iota.serverConfig.dispenserCanEmptyCauldron().get())) return DEFAULT_FULL_BUCKET_BEHAVIOR.dispense(source, stack);
 
@@ -70,30 +71,32 @@ public class DispenserBehaviors {
 
             BlockState newState = null;
 
-            if (!state.is(Blocks.CAULDRON) || !(stack.getItem() instanceof BucketItemAccess item)) return DEFAULT_FULL_BUCKET_BEHAVIOR.dispense(source, stack);
+            if (!state.is(Blocks.CAULDRON)) return DEFAULT_FULL_BUCKET_BEHAVIOR.dispense(source, stack);
 
-            if (Iota.serverConfig.dispenserCanFillWaterCauldron().get() && item.getContent().is(FluidTags.WATER)) {
-                newState = Blocks.WATER_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
-            } else if (Iota.serverConfig.dispenserCanFillLavaCauldron().get() && item.getContent().is(FluidTags.LAVA)) {
-                newState = Blocks.LAVA_CAULDRON.defaultBlockState();
-            } else if (Iota.serverConfig.dispenserCanFillPowderSnowCauldron().get() &&
-                    item instanceof SolidBucketItem solidBucketItem && solidBucketItem.getBlock() == Blocks.POWDER_SNOW) {
+            if (stack.getItem() instanceof BucketItemAccess bucketItem) {
+                if (Iota.serverConfig.dispenserCanFillWaterCauldron().get() && bucketItem.getContent().is(FluidTags.WATER)) {
+                    newState = Blocks.WATER_CAULDRON.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+                } else if (Iota.serverConfig.dispenserCanFillLavaCauldron().get() && bucketItem.getContent().is(FluidTags.LAVA)) {
+                    newState = Blocks.LAVA_CAULDRON.defaultBlockState();
+                }
+            }
+            else if (Iota.serverConfig.dispenserCanFillPowderSnowCauldron().get() && stack.is(Items.POWDER_SNOW_BUCKET)) {
                 newState = (Blocks.POWDER_SNOW_CAULDRON).defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
             }
 
             if (newState != null) {
                 levelaccessor.setBlock(blockpos, newState, 2);
 
-                if (item instanceof MobBucketItemAccess mobBucketItem) {
+                if (stack.getItem() instanceof MobBucketItemAccess mobBucketItem) {
                     LogManager.getLogger().info("aaa {}", mobBucketItem);
                     if (!Iota.serverConfig.dispenserCanFillAnimalCauldron().get()) { return DEFAULT_FULL_BUCKET_BEHAVIOR.dispense(source, stack); }
                     mobBucketItem.callSpawn(levelaccessor, stack, blockpos);
                 }
 
-                if (item instanceof SolidBucketItem bi)
+                if (stack.getItem() instanceof SolidBucketItem bi)
                     levelaccessor.playSound(null, blockpos, bi.getBlock().getSoundType(bi.getBlock().defaultBlockState()).getPlaceSound(),
                             SoundSource.BLOCKS, 1f, 1f);
-                else item.callPlayEmptySound(null, levelaccessor, blockpos);
+                else if (stack.getItem() instanceof BucketItemAccess bia) bia.callPlayEmptySound(null, levelaccessor, blockpos);
 
                 stack.shrink(1);
                 if (stack.isEmpty()) {
@@ -119,6 +122,7 @@ public class DispenserBehaviors {
         @Nonnull
         @Override
         public ItemStack execute(BlockSource source, @Nonnull ItemStack stack) {
+            // TODO: rewrite
             LevelAccessor levelaccessor = source.getLevel();
             BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
             BlockState state = levelaccessor.getBlockState(blockpos);
