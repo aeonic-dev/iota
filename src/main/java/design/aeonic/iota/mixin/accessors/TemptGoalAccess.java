@@ -1,4 +1,4 @@
-package design.aeonic.iota.mixin;
+package design.aeonic.iota.mixin.accessors;
 
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.TemptGoal;

@@ -1,6 +1,7 @@
 package design.aeonic.iota.mixin;
 
 import design.aeonic.iota.Iota;
+import design.aeonic.iota.mixin.accessors.TemptGoalAccess;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Cow;
@@ -35,5 +36,4 @@ abstract class TemptGoalMixin {
 
         return oldValue;
     }
-
 }

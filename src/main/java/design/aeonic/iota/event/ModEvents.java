@@ -2,6 +2,7 @@ package design.aeonic.iota.event;
 
 import design.aeonic.iota.Iota;
 import design.aeonic.iota.event.setup.DispenserBehaviors;
+import design.aeonic.iota.event.setup.IotaAdvancements;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -11,6 +12,7 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onCommonSetup(FMLCommonSetupEvent event) {
+        // Main thread
         event.enqueueWork(() -> {
             DispenserBehaviors.register();
         });

@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Iota.MOD_ID)
 public class IotaBlocks {
 
-	public static final IotaRegistrate.TheWholeNineYards<KilnBlock, KilnBlockEntity, KilnMenu, KilnScreen> KILN = Iota.REGISTRATE.bazinga("kiln",
+	public static final IotaRegistrate.TheWholeNineYards<KilnBlock, KilnBlockEntity, KilnMenu, KilnScreen> KILN = Iota.REG.bazinga("kiln",
 			KilnBlock::new, Material.STONE, b -> b
 					.addLayer(() -> RenderType::cutout)
 					.properties(p -> BlockBehaviour.Properties.of(Material.STONE).noOcclusion().isViewBlocking((x, y, z) -> false).strength(3.5F).lightLevel(s -> s.getValue(BlockStateProperties.LIT) ? 13 : 0))

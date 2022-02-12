@@ -13,7 +13,7 @@ public class Iota {
     public static final String MOD_ID = "iota";
     public static final String MOD_NAME = "Iota";
     
-    public static final IotaRegistrate REGISTRATE = IotaRegistrate.create();
+    public static final IotaRegistrate REG = IotaRegistrate.INSTANCE;
     public static final ConfigServer serverConfig = ConfigHelper.register(ModConfig.Type.SERVER, ConfigServer::create);
     public static final ConfigCommon commonConfig = ConfigHelper.register(ModConfig.Type.COMMON, ConfigCommon::create);
 

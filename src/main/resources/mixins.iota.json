@@ -9,13 +9,14 @@
     "TurtleMixin",
     "ParrotMixin",
     "SnowGolemMixin",
-
     "TemptGoalMixin",
-    "TemptGoalAccess",
-
     "IForgeBlockStateMixin",
-    "BucketItemAccess",
-    "MobBucketItemAccess"
+    "ServerPlayerMixin",
+    "InventoryMixin",
+
+    "accessors.TemptGoalAccess",
+    "accessors.BucketItemAccess",
+    "accessors.MobBucketItemAccess"
   ],
   "client": [],
   "minVersion": "0.8.4"

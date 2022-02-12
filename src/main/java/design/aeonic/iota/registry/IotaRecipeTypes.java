@@ -1,6 +1,7 @@
 package design.aeonic.iota.registry;
 
 import design.aeonic.iota.Iota;
+import design.aeonic.iota.config.condition.KilnConfigCondition;
 import design.aeonic.iota.content.kiln.KilnRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -10,6 +11,10 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -26,6 +31,12 @@ public class IotaRecipeTypes {
     public static final RegistryObject<SimpleCookingSerializer<KilnRecipe>> KILN_SERIALIZER = SERIALIZERS.register(
             "kiln",
             () -> new SimpleCookingSerializer<>(KilnRecipe::new, 100));
+
+    // Recipe conditions
+    @SubscribeEvent
+    public static void registerConditionSerializers(RegistryEvent.Register<RecipeSerializer<?>> event) {
+        CraftingHelper.register(new KilnConfigCondition().serializer());
+    }
 
     public static ResourceLocation getKey(RecipeType<? extends Recipe<?>> type) {
         return Registry.RECIPE_TYPE.getKey(type);

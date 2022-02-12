@@ -1,9 +1,8 @@
 package design.aeonic.iota.event.setup;
 
 import design.aeonic.iota.Iota;
-import design.aeonic.iota.mixin.BucketItemAccess;
-import design.aeonic.iota.mixin.MobBucketItemAccess;
-import design.aeonic.iota.registry.IotaTags;
+import design.aeonic.iota.mixin.accessors.BucketItemAccess;
+import design.aeonic.iota.mixin.accessors.MobBucketItemAccess;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Vec3i;
@@ -124,8 +123,8 @@ public class DispenserBehaviors {
             BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
             BlockState state = levelaccessor.getBlockState(blockpos);
 
-            ItemStack item = null;
-            SoundEvent soundEvent = null;
+            ItemStack item;
+            SoundEvent soundEvent = SoundEvents.BUCKET_FILL;
 
             if (state.is(Blocks.WATER_CAULDRON)) {
                 Supplier<List<Entity>> entities = () -> levelaccessor.getEntitiesOfClass(
@@ -145,7 +144,6 @@ public class DispenserBehaviors {
                 }
                 else {
                     item = new ItemStack(Items.WATER_BUCKET);
-                    soundEvent = SoundEvents.BUCKET_FILL;
                 }
             }
             else if (state.is(Blocks.POWDER_SNOW_CAULDRON)) {
@@ -159,8 +157,8 @@ public class DispenserBehaviors {
             else return DEFAULT_EMPTY_BUCKET_BEHAVIOR.dispense(source, stack);
 
             // why does the superclass for layered and lava cauldron blocks not have the isFull method bro what the hell
-            if (item != null && ((state.getBlock() instanceof LavaCauldronBlock be ? be.isFull(state) :
-                            ((LayeredCauldronBlock) state.getBlock()).isFull(state)))) {
+            if (state.getBlock() instanceof LavaCauldronBlock be ? be.isFull(state) :
+                            ((LayeredCauldronBlock) state.getBlock()).isFull(state)) {
                 levelaccessor.setBlock(blockpos, Blocks.CAULDRON.defaultBlockState(), 2);
 
                 source.getLevel().playSound(null, blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);

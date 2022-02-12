@@ -34,6 +34,8 @@ import java.util.function.Supplier;
 
 public class IotaRegistrate extends AbstractRegistrate<IotaRegistrate> {
 
+    public static final IotaRegistrate INSTANCE = IotaRegistrate.create();
+
     public static IotaRegistrate create() {
         return new IotaRegistrate().registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
     }
