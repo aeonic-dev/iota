@@ -45,7 +45,7 @@ public final class MixinCallbacks {
     }
 
     public static void spawnBlockBroken(BlockPos pos, Level level) {
-        if (level instanceof ServerLevel serverLevel) {
+        if (level instanceof ServerLevel serverLevel && Iota.serverConfig.alertPlayerWhenSpawnpointRemoved().get()) {
             serverLevel.getServer().getPlayerList().getPlayers().forEach(
                     p -> ((IPlayerSpawnCheck) ((Object) p)).checkSpawnBlockBroken(pos));
         }

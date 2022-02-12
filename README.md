@@ -38,6 +38,7 @@ More information on these features and how to use them will be available in the 
 #### Miscellaneous
 * Iota adds a few advancements for you to discover; these will be listed in the wiki.
 * Nether portals now allow crying obsidian within their frame, as well as anything else in the handy `iota:blocks/nether_portal_frame` tag! Add blocks to your heart's desire.
+* Players now get a message in chat when their spawnpoint is invalidated.
 
 ### Integration
 

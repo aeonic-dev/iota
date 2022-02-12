@@ -7,6 +7,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.common.Tags;
 
+import java.io.ObjectInputFilter;
+
 public record ConfigServer(
         // Vanilla tweaks
         ForgeConfigSpec.ConfigValue<Boolean> dispenserCanEmptyCauldron,
@@ -35,6 +37,7 @@ public record ConfigServer(
         ConfigValue<Double> chickenFollowingSpeedMultiplier,
 
         ConfigValue<Boolean> useNetherPortalFrameTag,
+        ConfigValue<Boolean> alertPlayerWhenSpawnpointRemoved,
 
         // Additions
         ConfigValue<Double> kilnSmeltingSpeedMultiplier,
@@ -150,6 +153,10 @@ public record ConfigServer(
             builder.pop();
 
             builder.comment("Enable or disable Iota's miscellaneous tweaks.").push("misc");
+                var alertPlayerWhenSpawnpointRemoved = IotaConfigHelper.configVar(builder,
+                        "alertPlayerWhenSpawnpointRemoved",
+                        "Whether to send players a chat message when their spawn block is broken.",
+                        (b, s) -> b.define(s, true));
                 var useNetherPortalFrameTag = IotaConfigHelper.configVar(builder,
                         "useNetherPortalFrameTag",
                         "Whether to use the `iota:blocks/nether_portal_frame` tag for portal frames.",
@@ -216,6 +223,7 @@ public record ConfigServer(
             chickenFollowingSpeedMultiplier,
 
             useNetherPortalFrameTag,
+            alertPlayerWhenSpawnpointRemoved,
 
             kilnSmeltingSpeedMultiplier,
             kilnSmeltingIngredientTags,

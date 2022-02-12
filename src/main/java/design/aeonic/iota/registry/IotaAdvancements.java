@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public class IotaAdvancements {
 
     public static final ResourceLocation MAIN_GROUP_BACKGROUND = new ResourceLocation(
-            "textures/block/anvil.png");
+            "minecraft:textures/block/sculk_sensor_bottom.png");
 
     public static AdvancementEntry IOTA = new AdvancementEntry(() ->
         Advancement.Builder.advancement()
