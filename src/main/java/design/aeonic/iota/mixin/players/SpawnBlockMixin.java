@@ -1,9 +1,7 @@
 package design.aeonic.iota.mixin.players;
 
-import design.aeonic.iota.base.mixin.IPlayerSpawnCheck;
 import design.aeonic.iota.base.mixin.MixinCallbacks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +18,8 @@ public abstract class SpawnBlockMixin extends Block {
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        MixinCallbacks.spawnBlockBroken(pPos, pLevel);
+        if (!pState.is(pNewState.getBlock()))
+            MixinCallbacks.spawnBlockBroken(pPos, pLevel);
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 }

@@ -4,6 +4,9 @@
 * Registry refactoring
 * Added default JEI info for the Kiln
 * Added Piracy advancement
+* Added spawnpoint removal alert
+  * Broke spawnpoint removal alert
+  * Fixed spawnpoint removal alert
 
 ### 0.2.2
 * Moved mob bucket settings for dispenser behavior to common config
